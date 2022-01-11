@@ -3,16 +3,16 @@ on: [push]
 jobs:
   lint:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-          
+
       - name: Build Custom PHPStan
         run: |
           docker build -t custom-phpstan - < phpstan.Dockerfile
-          
+
       - name: Run PHPStan
         run: |
-          docker run -v $PWD:/app --rm --entrypoint /bin/sh custom-phpstan -c php -v
+          docker run -v $PWD:/app --rm --entrypoint /bin/sh custom-phpstan -c 'php -v'
+          echo '---'
           docker run -v $PWD:/app --rm custom-phpstan analyze --debug
