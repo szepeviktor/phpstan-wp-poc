@@ -14,5 +14,5 @@ jobs:
           
       - name: Run PHPStan
         run: |
-          docker run -v $PWD:/app --rm --entrypoint /bin/bash custom-phpstan -c php -v
+          docker run -v $PWD:/app --rm --entrypoint /bin/sh custom-phpstan -c php -v
           docker run -v $PWD:/app --rm custom-phpstan analyze --debug
